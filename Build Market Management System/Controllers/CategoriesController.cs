@@ -3,11 +3,12 @@ using Build_Market_Management_System.Models;
 
 namespace Build_Market_Management_System.Controllers
 {
-    public class Categories : Controller
+    public class CategoriesController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            var categories = CategoriesRepository.GetCategories();
+            return View(categories);
         }
 
         public IActionResult Edit(int id)
