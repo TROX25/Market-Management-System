@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Build_Market_Management_System.Models;
 
 namespace Build_Market_Management_System.Controllers
 {
@@ -11,7 +12,13 @@ namespace Build_Market_Management_System.Controllers
 
         public IActionResult Edit(int id)
         {
-            return View();
+            var category = new Category
+            {
+                Id = id,
+                Name = "Sample Category",
+                Description = "This is a sample category description."
+            };
+            return View(category);
         }
     }
 }
