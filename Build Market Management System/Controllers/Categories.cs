@@ -14,7 +14,7 @@ namespace Build_Market_Management_System.Controllers
         {
             var category = new Category
             {
-                Id = id,
+                ID = id,
                 Name = "Sample Category",
                 Description = "This is a sample category description."
             };
