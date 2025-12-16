@@ -40,7 +40,7 @@ namespace Build_Market_Management_System.Models
         {
             if (ID != category.ID) return;
 
-            var categoryToUpdate = GetCategoryById(ID);
+            var categoryToUpdate = _categories.FirstOrDefault(x => x.ID == ID);
             if (categoryToUpdate != null)
             {
                 categoryToUpdate.Name = category.Name;

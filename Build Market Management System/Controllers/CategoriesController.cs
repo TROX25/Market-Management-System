@@ -17,5 +17,17 @@ namespace Build_Market_Management_System.Controllers
 
             return View(category);
         }
+
+        [HttpPost] //defaultowo jest HttpGet wiec musimy zaznaczyc ze to jest HttpPost
+        public IActionResult Edit(Category category)
+        {
+            if (ModelState.IsValid)
+            {
+                CategoriesRepository.UpdateCategory(category.ID, category);
+                return RedirectToAction("Index"); // Dzieki temu wracamy do listy kategorii po edycji
+            }
+
+            return View(category); // Jesli model jest nieprawidlowy, ponownie wyswietlamy formularz z bledami
+        }
     }
 }
