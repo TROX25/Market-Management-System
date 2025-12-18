@@ -29,5 +29,21 @@ namespace Build_Market_Management_System.Controllers
 
             return View(category); // Jesli model jest nieprawidlowy, ponownie wyswietlamy formularz z bledami
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Category category)
+        {
+            if (ModelState.IsValid) 
+            {
+                CategoriesRepository.AddCategory(category);
+                return RedirectToAction("Index");
+            }
+            return View(category);
+        }
     }
 }
