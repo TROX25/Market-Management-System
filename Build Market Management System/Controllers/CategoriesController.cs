@@ -43,7 +43,11 @@ namespace Build_Market_Management_System.Controllers
                 CategoriesRepository.AddCategory(category);
                 return RedirectToAction("Index");
             }
-            return View(category);
+            else
+            {
+                return View(category);
+            }
+
         }
     }
 }
