@@ -1,7 +1,13 @@
 ﻿@model Category
+@{
+    string action = ViewBag.Action ?? string.Empty;
+}
 
-<form method="post" asp-controller="categories" asp-action="edit">
-    <input type="hidden" asp-for="ID" />
+<form method="post" asp-controller="categories" asp-action="@action">
+    @if (action.ToLower() == "edit")
+    {
+            <input type="hidden" asp-for="ID" />
+    }
     @* dodaje obsługe błedów *@
     <div class="text-danger" asp-validation-summary="All"></div>
     <div class="row mb-3">
