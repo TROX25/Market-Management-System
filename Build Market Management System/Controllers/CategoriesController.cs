@@ -13,6 +13,7 @@ namespace Build_Market_Management_System.Controllers
 
         public IActionResult Edit(int? id)
         {
+            ViewBag.Action = "edit";
             var category = CategoriesRepository.GetCategoryById(id ?? 0);
 
             return View(category);
@@ -32,6 +33,7 @@ namespace Build_Market_Management_System.Controllers
 
         public IActionResult Add()
         {
+            ViewBag.Action = "add";
             return View();
         }
 
