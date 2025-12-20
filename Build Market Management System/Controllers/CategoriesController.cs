@@ -49,5 +49,11 @@ namespace Build_Market_Management_System.Controllers
             }
 
         }
+
+        public IActionResult Delete(int id)
+        {
+            CategoriesRepository.DeleteCategory(id);
+            return RedirectToAction("Index");
+        }
     }
 }
