@@ -7,5 +7,7 @@
 
 @if (Model != null)
 {
-  <partial name="_Category" model="@Model" />
+    <form method="post" asp-controller="categories" asp-action="edit">
+    <partial name="_Category" model="@Model" />
+    </form>
 }
