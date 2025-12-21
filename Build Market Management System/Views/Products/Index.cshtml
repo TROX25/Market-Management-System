@@ -19,7 +19,7 @@
                 @foreach (var product in Model)
                 {
                     <tr>
-                        <td>@product.CategoryId</td>
+                        <td>@product.Category?.Name</td>
                         <td>@product.Name</td>
                         <td>@product.Price</td>
                         <td>@product.Quantity</td>

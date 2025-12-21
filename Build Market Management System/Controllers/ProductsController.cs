@@ -8,7 +8,7 @@ namespace Build_Market_Management_System.Controllers
     {
         public IActionResult Index()
         {
-            var products = ProductsRepository.GetProducts();
+            var products = ProductsRepository.GetProducts(loadCategory: true);
             return View(products);
         }
 

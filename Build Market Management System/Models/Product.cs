@@ -19,5 +19,7 @@ namespace Build_Market_Management_System.Models
         [Required]
         [Range(0, int.MaxValue)]
         public double? Price { get; set; }
+
+        public Category? Category{ get; set; }
     }
 }
