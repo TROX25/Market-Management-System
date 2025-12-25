@@ -1,11 +1,5 @@
 ﻿@model Category
 
-@{
-    ViewBag.Action = "add";
-}
-
 <h3>Category</h3>
 
-<form method="post" asp-controller="categories" asp-action="add">
-    <partial name="_Category" model="@Model" />
-</form>
+<partial name="_Category" model="@Model" />
