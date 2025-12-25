@@ -27,7 +27,7 @@ namespace Build_Market_Management_System.Controllers
                 CategoriesRepository.UpdateCategory(category.ID, category);
                 return RedirectToAction("Index"); // Dzieki temu wracamy do listy kategorii po edycji
             }
-            ViewBag.Action = "edit";
+            //ViewBag.Action = "edit";
             return View(category); // Jesli model jest nieprawidlowy, ponownie wyswietlamy formularz z bledami
         }
 
@@ -40,7 +40,7 @@ namespace Build_Market_Management_System.Controllers
         [HttpPost]
         public IActionResult Add(Category category)
         {
-            ViewBag.Action = "add";
+            //ViewBag.Action = "add";
             if (ModelState.IsValid) 
             {
                 CategoriesRepository.AddCategory(category);
