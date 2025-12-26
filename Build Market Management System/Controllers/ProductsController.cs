@@ -31,10 +31,10 @@ namespace Build_Market_Management_System.Controllers
                 ProductsRepository.AddProduct(productViewModel.Product);
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return View(productViewModel);
-            }
+
+            productViewModel.Categories = CategoriesRepository.GetCategories();
+            return View(productViewModel);
+            
 
         }
         [HttpPost]
