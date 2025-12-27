@@ -56,6 +56,7 @@
                 {
                     prod.Category = CategoriesRepository.GetCategoryById(prod.CategoryId ?? 0);
                 }
+                return prod;
             }
 
             return null;

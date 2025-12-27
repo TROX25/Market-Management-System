@@ -34,7 +34,7 @@ namespace Build_Market_Management_System.Controllers
 
             productViewModel.Categories = CategoriesRepository.GetCategories();
             return View(productViewModel);
-            
+
 
         }
         [HttpPost]
@@ -42,6 +42,30 @@ namespace Build_Market_Management_System.Controllers
         {
             ProductsRepository.DeleteProduct(id);
             return RedirectToAction("Index");
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            var productViewModel = new ProductViewModel
+            {
+                // Dzieki temu pobieramy dane kategorii i produktu ktore potem przekazuje do widoku i wyswietlam
+                Product = ProductsRepository.GetProductById(id ?? 0),
+                Categories = CategoriesRepository.GetCategories()
+            };
+
+            return View(productViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(ProductViewModel productViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                ProductsRepository.UpdateProduct(productViewModel.Product.ProductId, productViewModel.Product);
+                return RedirectToAction("Index");
+            }
+            productViewModel.Categories = CategoriesRepository.GetCategories();
+            return View(productViewModel);
         }
     }
 }
