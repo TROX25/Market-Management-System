@@ -13,8 +13,19 @@ namespace Build_Market_Management_System.Models
 
         public static void AddCategory(Category category)
         {
-            var maxId = _categories.Max(x => x.ID);
-            category.ID = maxId + 1;
+            if (category != null && _categories.Count > 0)
+            {
+                var maxId = _categories.Max(x => x.ID);
+                category.ID = maxId + 1;
+            }
+            else
+            {
+                category.ID = 1;
+            }
+            if (_categories == null)
+            {
+                new List<Category>();
+            }
             _categories.Add(category);
         }
 
