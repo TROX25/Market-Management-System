@@ -1,8 +1,8 @@
-﻿
+﻿@model SalesViewModel
 
 <div class = "row">
 	<div class="col-7"><h3>Cashier's Console</h3></div>
-	<div class= "col2"><label for="cashier">Cashier Name:</label></div>
+	<div class= "col-2"><label for="cashier">Cashier Name:</label></div>
 	<div class= "col-3">
 		@* Cashier name here *@
 	</div>
@@ -10,8 +10,18 @@
 
 <br />
 <div class ="row">
-	<div class="col4">
+	<div class="col-4">
 		@*Category section*@
+		<select asp-for="SelectedCategoryId" class="form-control">
+                <option>- Please Select -</option>
+                 @if (Model.Categories != null && Model.Categories.Count() > 0)
+                 {
+                     @foreach (var car in Model.Categories)
+                     {
+                         <option value="@car.ID">@car.Name</option>
+                     }
+                 }
+             </select>
 		<br />
 		<div>
 			@*Product List*@
