@@ -1,0 +1,23 @@
+﻿@model List<Product>
+
+
+@if (Model != null && Model.Count() > 0)
+{
+	<table>
+		<thead>
+			<tr>
+				<th>Product Name</th>
+				<th>Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var product in Model)
+			{
+				<tr>
+					<td>@product.Name</td>
+					<td>@product.Quantity</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

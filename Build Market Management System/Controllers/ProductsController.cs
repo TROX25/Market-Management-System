@@ -69,5 +69,13 @@ namespace Build_Market_Management_System.Controllers
             productViewModel.Categories = CategoriesRepository.GetCategories();
             return View(productViewModel);
         }
+
+        public IActionResult ProductsByCategoryPartial(int categoryId)
+        {
+            var products = ProductsRepository.GetProductsByCategoryId(categoryId);
+
+            // Dzieki partial view zamisast odswiezac cala strone odswiezamy tylko liste produktow
+            return PartialView("_Products", products);
+        }
     }
 }
