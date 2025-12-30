@@ -23,7 +23,7 @@
                  }
              </select>
 		<br />
-		<div>
+		<div id="productsPartial">
 			@*Product List*@
 		</div>
 		<br />
@@ -36,3 +36,16 @@
 		@*List of transactions*@
 	</div>
 </div>
+
+@* Jquery + AJAX to dynamically load products based on selected category *@
+@section Scripts {
+	<script>
+		$(function()
+		{
+			$("#SelectedCategoryId").on("change", function ()
+			{
+				$("#productsPartial").load("/products/ProductsByCategoryPartial", {CategoryId: $(this).val()}); /* this czyli SelectedCategoryId, a ID to categoryId */
+			})
+		});
+	</script>
+}
