@@ -27,7 +27,7 @@
 			@*Product List*@
 		</div>
 		<br />
-		<div>
+		<div id="productsDetailsPartial">
 			@*Product details*@
 		</div>
 		@*Sales form*@
@@ -56,7 +56,14 @@
 				$('.product-row').removeClass('highlight');
 					// 2. Dodaje highlight do aktualnie zaznaczonego rzędu
 				$(this).addClass('highlight');
+				// Load Product Details
+					// 1. Pobieram Id zaznaczonego produktu
+					var productId = $(this).attr("product-id");
+					alert(productId);
 			});
+
+			
+
 		});
 	</script>
 }
