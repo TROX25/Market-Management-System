@@ -1,4 +1,4 @@
-﻿@model SalesViewModel
+﻿@model Build_Market_Management_System.ViewModels.SalesViewModel
 
 <div class = "row">
 	<div class="col-7"><h3>Cashier's Console</h3></div>
@@ -36,7 +36,7 @@
 			<input asp-for="SelectedProductId" type="hidden" />
 			<div class="form-group">
 				<label asp-for="QuantityToSell"></label>
-				<input type="number" asp-for="QuantityToSell" class="form-control" @* min="1" *@/>
+				<input type="number" asp-for="QuantityToSell" class="form-control" min="1"/>
 			</div>
 			@* <div class="col">
             <span class="text-danger" asp-validation-for="QuantityToSell"></span>
@@ -57,15 +57,26 @@
 		{
 			// Hide Sale Form until a product is selected
 			$('#formSale').hide();
+			// Clear Selected Product and Quantity on page load
+			$("#QuantityToSell").val("");
+
+			// Load products if category is already selected
+			var selectedCategoryId = $("#SelectedCategoryId").val();
+			if(selectedCategoryId > 0)
+			{
+				loadProducts(selectedCategoryId);
+			}
+
 
 			// 1. Category Selection
 			$("#SelectedCategoryId").on("change", function ()
 			{
-				$("#productsPartial").load("/products/ProductsByCategoryPartial", {CategoryId: $(this).val()}); /* this czyli SelectedCategoryId, a ID to categoryId */
-				//dzieki .html(""); przy kazdej zmianie kategorii content dla diva productDetailPartial jest czyszczony
-				$("#productsDetailsPartial").html("");
+				loadProducts($(this).val());
+				// $("#productsPartial").load("/products/ProductsByCategoryPartial", {CategoryId: $(this).val()}); /* this czyli SelectedCategoryId, a ID to categoryId */
+				// dzieki .html(""); przy kazdej zmianie kategorii content dla diva productDetailPartial jest czyszczony
+				// $("#productsDetailsPartial").html("");
 				// Hide Sale Form until a product is selected
-				$('#formSale').hide();
+				// $('#formSale').hide();
 			});
 
 			// 2. Product Selection
@@ -93,15 +104,22 @@
 				}
 				else
 				{
-					("#SelectedProductId").val("");
+					$("#SelectedProductId").val("");
 					$('#formSale').hide();
 				}
 
 			});
 
-			
-
 		});
+		
+		function loadProducts(categoryId)
+		{
+			$("#productsPartial").load("/products/ProductsByCategoryPartial", {CategoryId: categoryId}); /* Gdyby bylo to poza funckja to uzylbym this -> $(this).val()} this czyli SelectedCategoryId, a ID to categoryId */
+				//dzieki .html(""); przy kazdej zmianie kategorii content dla diva productDetailPartial jest czyszczony
+			$("#productsDetailsPartial").html("");
+				// Hide Sale Form until a product is selected
+			$('#formSale').hide();
+		}
 	</script>
 }
 
