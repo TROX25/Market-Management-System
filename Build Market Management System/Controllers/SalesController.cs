@@ -20,5 +20,11 @@ namespace Build_Market_Management_System.Controllers
             var product = ProductsRepository.GetProductById(productId);
             return PartialView("_SellProduct", product);
         }
+
+       [HttpPost]
+       public IActionResult Sell()
+       {
+            return View();
+       }
     }
 }

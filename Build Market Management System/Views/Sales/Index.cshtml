@@ -31,6 +31,15 @@
 			@*Product details*@
 		</div>
 		@*Sales form*@
+		<form method="post" asp-controller="sales" asp-action="sell" id="formSale">
+			<input asp-form="SelectedProductId" type="hidden" />
+			<div class="form-group">
+				<label asp-for="QuantityToSell"></label>
+				<input type="number" asp-for="QuantityToSell" class="form-control" min="1"/>
+			</div>
+			<br />
+			<input type="submit" value="Submit" class="btn btn-primary"/>
+		</form>
 	</div>
 	<div class="col">
 		@*List of transactions*@
@@ -42,15 +51,25 @@
 	<script>
 		$(function()
 		{
+			// Hide Sale Form until a product is selected
+			$('#formSale').hide();
+
 			// 1. Category Selection
 			$("#SelectedCategoryId").on("change", function ()
 			{
 				$("#productsPartial").load("/products/ProductsByCategoryPartial", {CategoryId: $(this).val()}); /* this czyli SelectedCategoryId, a ID to categoryId */
-			})
+				//dzieki .html(""); przy kazdej zmianie kategorii content dla diva productDetailPartial jest czyszczony
+				$("#productsDetailsPartial").html("");
+				// Hide Sale Form until a product is selected
+				$('#formSale').hide();
+			});
 
 			// 2. Product Selection
 			$("#productsPartial").on("click", ".product-row", function ()
 			{
+				// usuwam poprzednie przypisanie quantity przy zmianie produktu
+				$('#formSale')[0].reset();
+
 				// Highligt selected row (references wwwroot/css/site file where i set highlight to yellow)
 					// 1. Musze odhighligthowac wszytstko co jest obecnie zahighlightowane
 				$('.product-row').removeClass('highlight');
@@ -62,6 +81,18 @@
 					alert(productId);
 					// 2. Ładuje szczegóły produktu do odpowiedniego diva
 					$("#productsDetailsPartial").load("/sales/ProductDetailsPartial", { ProductId: productId });
+				// Show Sale Form
+				if(productId > 0)
+				{
+					$("SelectedProductId").val(productId);
+					$('#formSale').show();
+				}
+				else
+				{
+					("SelectedProductId").val("");
+					$('#formSale').hide();
+				}
+
 			});
 
 			
@@ -69,3 +100,4 @@
 		});
 	</script>
 }
+
