@@ -108,5 +108,14 @@
                 return new List<Product>();
             }
         }
+
+        public static void DecreaseProductQuantity(int productId, int quantity)
+        {
+            var product = _products.FirstOrDefault(x => x.ProductId == productId);
+            if (product != null)
+            {
+                product.Quantity -= quantity;
+            }
+        }
     }
 }
