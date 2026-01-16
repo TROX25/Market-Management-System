@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UseCases.DataStorePluginInterfaces;
+using UseCases.Interfaces;
 
 namespace UseCases.ProductsUseCases
 {
-    public class DeleteProductUseCase
+    public class DeleteProductUseCase : IDeleteProductUseCase
     {
         private readonly IProductRepository productRepository;
 

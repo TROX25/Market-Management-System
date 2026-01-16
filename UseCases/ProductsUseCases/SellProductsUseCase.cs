@@ -9,7 +9,7 @@ using UseCases.Interfaces;
 
 namespace UseCases.ProductsUseCases
 {
-    public class SellProductsUseCase
+    public class SellProductsUseCase : ISellProductsUseCase
     {
         private readonly IProductRepository productRepository;
         private readonly IRecordTransactionUseCase recordTransactionUseCase;

@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using CoreBusiness;
 using UseCases.DataStorePluginInterfaces;
+using UseCases.Interfaces;
 
 namespace UseCases.ProductsUseCases
 {
-    public class ViewProductsUseCase
+    public class ViewProductsUseCase : IViewProductsUseCase
     {
         private readonly IProductRepository productRepository;
 

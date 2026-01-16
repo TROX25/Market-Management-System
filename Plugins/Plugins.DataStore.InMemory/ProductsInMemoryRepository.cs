@@ -1,9 +1,18 @@
-﻿namespace Build_Market_Management_System.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CoreBusiness;
+using UseCases.DataStorePluginInterfaces;
+
+namespace Plugins.DataStore.InMemory
 {
-    public class ProductsRepository
+    public class ProductsInMemoryRepository : IProductRepository
     {
+        
         // _products wynika z konwencji nazewnictwa dla prywatnych pól statycznych. Oznacza to ze NIE jest przeznaczone do użytku poza tą klasą !!!
-        private static List<Product> _products = new()
+        private List<Product> _products = new()
         {
             new Product { ProductId = 1, CategoryId = 1, Name = "Iced Tea", Quantity = 100, Price = 1.99 },
             new Product { ProductId = 2, CategoryId = 1, Name = "Canada Dry", Quantity = 200, Price = 1.99 },
@@ -11,7 +20,14 @@
             new Product { ProductId = 4, CategoryId = 2, Name = "White Bread", Quantity = 300, Price = 1.50 }
         };
 
-        public static void AddProduct(Product product)
+        private readonly ICategoryRepository categoryRepository;
+
+        public ProductsInMemoryRepository(ICategoryRepository categoryRepository)
+        {
+            this.categoryRepository = categoryRepository;
+        }
+
+        public void AddProduct(Product product)
         {
             if (product != null && _products.Count > 0)
             {
@@ -29,7 +45,7 @@
             _products.Add(product);
         }
 
-        public static List<Product> GetProducts(bool loadCategory = false)
+        public IEnumerable<Product> GetProducts(bool loadCategory = false)
         {
             if (!loadCategory)
             {
@@ -42,7 +58,7 @@
                     _products.ForEach(p =>
                     {
                         if (p.CategoryId.HasValue)
-                            p.Category = CategoriesRepository.GetCategoryById(p.CategoryId ?? 0);
+                            p.Category = categoryRepository.GetCategoryById(p.CategoryId ?? 0);
                     });
                 }
                 return _products ?? new List<Product>();
@@ -50,7 +66,7 @@
 
         }
 
-        public static Product? GetProductById(int productId, bool loadCategory = false)
+        public Product? GetProductById(int productId, bool loadCategory = false)
         {
             var product = _products.FirstOrDefault(x => x.ProductId == productId);
             if (product != null)
@@ -65,7 +81,7 @@
                 };
                 if (loadCategory && prod.CategoryId.HasValue)
                 {
-                    prod.Category = CategoriesRepository.GetCategoryById(prod.CategoryId ?? 0);
+                    prod.Category = categoryRepository.GetCategoryById(prod.CategoryId ?? 0);
                 }
                 return prod;
             }
@@ -73,7 +89,7 @@
             return null;
         }
 
-        public static void UpdateProduct(int productId, Product product)
+        public void UpdateProduct(int productId, Product product)
         {
             if (productId != product.ProductId) return;
 
@@ -87,7 +103,7 @@
             }
         }
 
-        public static void DeleteProduct(int productId)
+        public void DeleteProduct(int productId)
         {
             var product = _products.FirstOrDefault(x => x.ProductId == productId);
             if (product != null)
@@ -96,7 +112,7 @@
             }
         }
 
-        public static List<Product> GetProductsByCategoryId(int categoryId)
+        public IEnumerable<Product> GetProductsByCategoryId(int categoryId)
         {
             var products = _products.Where(x => x.CategoryId == categoryId);
             if (products != null)
@@ -109,7 +125,7 @@
             }
         }
 
-        public static void DecreaseProductQuantity(int productId, int quantity)
+        public void DecreaseProductQuantity(int productId, int quantity)
         {
             var product = _products.FirstOrDefault(x => x.ProductId == productId);
             if (product != null)
@@ -119,3 +135,4 @@
         }
     }
 }
+

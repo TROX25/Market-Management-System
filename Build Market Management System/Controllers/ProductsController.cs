@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography.X509Certificates;
-using Build_Market_Management_System.Models;
+using UseCases.Interfaces;
+using CoreBusiness;
 using Build_Market_Management_System.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,10 @@ namespace Build_Market_Management_System.Controllers
 {
     public class ProductsController : Controller
     {
+        public ProductsController()
+        {
+            
+        }
         public IActionResult Index()
         {
             var products = ProductsRepository.GetProducts(loadCategory: true);

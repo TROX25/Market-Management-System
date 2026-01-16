@@ -8,5 +8,9 @@ namespace UseCases.TransactionsUseCases
 {
     public class GetTodayTransactionUseCase
     {
+        public GetTodayTransactionUseCase(ITrasactionRepository trasactionRepository)
+        {
+            
+        }
     }
 }
