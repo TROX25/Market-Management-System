@@ -71,11 +71,10 @@ Build-Market-Management-System
 ## 🚀 Uruchomienie lokalne
 
 1. Sklonuj repozytorium:
-   ```bash
-   git clone https://github.com/TROX25/Build-Market-Management-System.git
-   ```
+```bash
+git clone https://github.com/TROX25/Build-Market-Management-System.git
+```
 2.Otwórz plik .sln w Visual Studio
-
 2. Skonfiguruj połączenie z bazą danych (np. w appsettings.json jeśli dotyczy)
 3. Przywróć pakiety NuGet
 4. Uruchom projekt (F5 / dotnet run)
