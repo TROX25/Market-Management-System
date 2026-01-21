@@ -3,8 +3,6 @@
 Aplikacja webowa typu **Market Management System**, stworzona w oparciu o **ASP.NET MVC** oraz zasady **Clean Architecture**.  
 Projekt służy do zarządzania podstawowymi procesami sklepowymi, takimi jak produkty, kategorie oraz logika biznesowa oddzielona od warstwy UI.
 
-Repozytorium zostało stworzone w celach edukacyjnych oraz jako element portfolio programistycznego.
-
 ---
 
 ## 🎯 Cel projektu
@@ -39,6 +37,7 @@ Projekt wykorzystuje **Clean Architecture**, dzięki czemu:
 - UI oraz baza danych są tylko szczegółami implementacyjnymi
 
 ### Struktura projektu:
+```
 Build-Market-Management-System
 │
 ├── CoreBusiness
@@ -54,7 +53,7 @@ Build-Market-Management-System
 │ └── Warstwa MVC (Controllers, Views)
 │
 └── BuildMarketManagementSystem.sln
-
+```
 ---
 
 ## 🛠 Technologie
