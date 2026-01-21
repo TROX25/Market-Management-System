@@ -1,4 +1,4 @@
- Build Market Management System
+ #Market Management System
 
 Aplikacja webowa typu **Market Management System**, stworzona w oparciu o **ASP.NET MVC** oraz zasady **Clean Architecture**.  
 Projekt służy do zarządzania podstawowymi procesami sklepowymi, takimi jak produkty, kategorie oraz logika biznesowa oddzielona od warstwy UI.
