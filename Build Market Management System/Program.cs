@@ -6,14 +6,31 @@ using UseCases.ProductsUseCases;
 using UseCases.TransactionsUseCases;
 using Plugins.DataStore.SQL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+if (builder.Environment.IsEnvironment("QA"))
+{
+    builder.WebHost.UseStaticWebAssets();
+}
 
-builder.Services.AddSingleton<ICategoryRepository, CategoriesInMemoryRepository>();
-builder.Services.AddSingleton<IProductRepository, ProductsInMemoryRepository>();
-builder.Services.AddSingleton<ITransactionRepository, TransactionsInMemoryRepository>();
+    builder.Services.AddControllersWithViews();
+
+
+if (builder.Environment.IsEnvironment("QA"))
+{
+    builder.Services.AddSingleton<ICategoryRepository, CategoriesInMemoryRepository>();
+    builder.Services.AddSingleton<IProductRepository, ProductsInMemoryRepository>();
+    builder.Services.AddSingleton<ITransactionRepository, TransactionsInMemoryRepository>();
+}
+else
+{
+    builder.Services.AddTransient<ICategoryRepository, CategorySQLRepository>();
+    builder.Services.AddTransient<IProductRepository, ProductSQLRepository>();
+    builder.Services.AddTransient<ITransactionRepository, TransactionSQLRepository>();
+}
+
 
 
 builder.Services.AddTransient<IViewCategoriesUseCase, ViewCategoriesUseCase>();

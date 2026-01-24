@@ -10,7 +10,7 @@ using UseCases.DataStorePluginInterfaces;
 
 namespace Plugins.DataStore.SQL
 {
-    class ProductSQLRepository : IProductRepository
+    public class ProductSQLRepository : IProductRepository
     {
         private readonly MarketContext db;
 
@@ -79,6 +79,7 @@ namespace Plugins.DataStore.SQL
         public void UpdateProduct(int productId, Product product)
         {
             if (productId != product.ProductId) return;
+
             var productToUpdate = db.Products.FirstOrDefault(c => c.ProductId == productId);
             if (productToUpdate != null)
             {
