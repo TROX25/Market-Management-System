@@ -48,7 +48,7 @@ Build-Market-Management-System
 ├── Plugins
 │ └── Implementacje dostępu do danych
 │
-├── WebApp
+├── Market Management System
 │ └── Warstwa MVC (Controllers, Views)
 │
 └── BuildMarketManagementSystem.sln
