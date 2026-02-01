@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UseCases.CategoriesUseCases;
 using UseCases.Interfaces;
+using UseCases.ProductsUseCases;
 
 namespace Build_Market_Management_System.Controllers
 {
@@ -14,16 +15,19 @@ namespace Build_Market_Management_System.Controllers
         private readonly IViewSelectedProductUseCase viewSelectedProductUseCase;
         private readonly IRecordTransactionUseCase recordTransactionUseCase;
         private readonly IDecreaseProductQuantityUseCase decreaseProductQuantityUseCase;
+        private readonly IViewProductsInCategoryUseCase viewProductsInCategoryUseCase;
 
         public SalesController(IViewCategoriesUseCase viewCategoriesUseCase, 
             IViewSelectedProductUseCase viewSelectedProductUseCase,
             IRecordTransactionUseCase recordTransactionUseCase,
-            IDecreaseProductQuantityUseCase decreaseProductQuantityUseCase)
+            IDecreaseProductQuantityUseCase decreaseProductQuantityUseCase,
+            IViewProductsInCategoryUseCase viewProductsInCategoryUseCase)
         {
             this.viewCategoriesUseCase = viewCategoriesUseCase;
             this.viewSelectedProductUseCase = viewSelectedProductUseCase;
             this.recordTransactionUseCase = recordTransactionUseCase;
             this.decreaseProductQuantityUseCase = decreaseProductQuantityUseCase;
+            this.viewProductsInCategoryUseCase = viewProductsInCategoryUseCase;
         }
         public IActionResult Index()
         {
@@ -77,6 +81,13 @@ namespace Build_Market_Management_System.Controllers
             // poniewaz przy postowaniu modelu nie sa one przesylane
             salesViewModel.Categories = viewCategoriesUseCase.Execute();
             return View("Index", salesViewModel);
+        }
+        public IActionResult ProductsByCategoryPartial(int categoryId)
+        {
+            var products = viewProductsInCategoryUseCase.Execute(categoryId);
+
+            // Dzieki partial view zamisast odswiezac cala strone odswiezamy tylko liste produktow
+            return PartialView("_Products", products);
         }
     }
 }

@@ -19,15 +19,13 @@ namespace Build_Market_Management_System.Controllers
         private readonly IViewSelectedProductUseCase viewSelectedProductUseCase;
         private readonly IViewProductsUseCase viewProductsUseCase;
         private readonly IViewCategoriesUseCase viewCategoriesUseCase;
-        private readonly IViewProductsInCategoryUseCase viewProductsInCategoryUseCase;
 
         public ProductsController(IAddProductUseCase addProductUseCase,
             IEditProductUseCase editProductUseCase,
             IDeleteProductUseCase deleteProductUseCase,
             IViewSelectedProductUseCase viewSelectedProductUseCase,
             IViewProductsUseCase viewProductsUseCase,
-            IViewCategoriesUseCase viewCategoriesUseCase,
-            IViewProductsInCategoryUseCase viewProductsInCategoryUseCase)
+            IViewCategoriesUseCase viewCategoriesUseCase)
         {
             this.addProductUseCase = addProductUseCase;
             this.editProductUseCase = editProductUseCase;
@@ -35,7 +33,7 @@ namespace Build_Market_Management_System.Controllers
             this.viewSelectedProductUseCase = viewSelectedProductUseCase;
             this.viewProductsUseCase = viewProductsUseCase;
             this.viewCategoriesUseCase = viewCategoriesUseCase;
-            this.viewProductsInCategoryUseCase = viewProductsInCategoryUseCase;
+            
         }
         public IActionResult Index()
         {
@@ -97,14 +95,6 @@ namespace Build_Market_Management_System.Controllers
             }
             productViewModel.Categories = viewCategoriesUseCase.Execute();
             return View(productViewModel);
-        }
-
-        public IActionResult ProductsByCategoryPartial(int categoryId)
-        {
-            var products = viewProductsInCategoryUseCase.Execute(categoryId);
-
-            // Dzieki partial view zamisast odswiezac cala strone odswiezamy tylko liste produktow
-            return PartialView("_Products", products);
         }
     }
 }

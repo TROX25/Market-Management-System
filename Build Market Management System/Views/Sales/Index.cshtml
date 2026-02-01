@@ -115,7 +115,7 @@
 		
 		function loadProducts(categoryId)
 		{
-			$("#productsPartial").load("/products/ProductsByCategoryPartial", {CategoryId: categoryId}); /* Gdyby bylo to poza funckja to uzylbym this -> $(this).val()} this czyli SelectedCategoryId, a ID to categoryId */
+			$("#productsPartial").load("/sales/ProductsByCategoryPartial", {CategoryId: categoryId}); /* Gdyby bylo to poza funckja to uzylbym this -> $(this).val()} this czyli SelectedCategoryId, a ID to categoryId */
 				//dzieki .html(""); przy kazdej zmianie kategorii content dla diva productDetailPartial jest czyszczony
 			$("#productsDetailsPartial").html("");
 				// Hide Sale Form until a product is selected
