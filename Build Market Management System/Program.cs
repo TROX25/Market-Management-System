@@ -20,6 +20,16 @@ if (builder.Environment.IsEnvironment("QA"))
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication().AddCookie("MyCookieAuth", options =>
+{
+    options.Cookie.Name = "MyCookieAuth";
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Inventory", policy => policy.RequireClaim("Position", "Inventory"));
+    options.AddPolicy("Cashiers", policy => policy.RequireClaim("Position", "Cashier"));
+});
 
 if (builder.Environment.IsEnvironment("QA"))
 {

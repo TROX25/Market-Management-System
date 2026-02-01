@@ -10,7 +10,7 @@ using UseCases.ProductsUseCases;
 
 namespace Build_Market_Management_System.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Inventory")]
     public class ProductsController : Controller
     {
         private readonly IAddProductUseCase addProductUseCase;

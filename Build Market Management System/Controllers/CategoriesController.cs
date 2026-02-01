@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Build_Market_Management_System.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Inventory")]
     public class CategoriesController : Controller
     {
         private readonly IAddCategoryUseCase addCategoryUseCase;

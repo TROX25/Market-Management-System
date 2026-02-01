@@ -7,7 +7,7 @@ using UseCases.Interfaces;
 
 namespace Build_Market_Management_System.Controllers
 {
-    [Authorize]
+    [Authorize(Policy = "Cashiers")]
     public class SalesController : Controller
     {
         private readonly IViewCategoriesUseCase viewCategoriesUseCase;
