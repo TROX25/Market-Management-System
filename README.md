@@ -1,7 +1,11 @@
 # Market Management System
 
+https://github.com/user-attachments/assets/c3c98f68-216a-43bd-b63f-702139177df0
+
 Aplikacja webowa typu **Market Management System**, stworzona w oparciu o **ASP.NET MVC** oraz zasady **Clean Architecture**.  
 Projekt służy do zarządzania podstawowymi procesami sklepowymi, takimi jak produkty, kategorie oraz logika biznesowa oddzielona od warstwy UI.
+
+
 
 ---
 
@@ -62,7 +66,6 @@ Build-Market-Management-System
 - **Entity Framework Core**
 - **C#**
 - **Clean Architecture**
-- **Dependency Injection**
 
 ---
 
